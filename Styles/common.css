@@ -1,4 +1,6 @@
 body {background-color: powderblue;}
 h1   {color: blue;
 	text-align: center;}
-p    {color: red;}
+a	{font-size: 1.5em;} 
+p 	{color: red;
+	text-align: center;}
