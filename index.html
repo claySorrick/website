@@ -28,6 +28,14 @@
 		$("#TH").text(totalHashes);
 		$("#AH").text(acceptedHashes);
 	}, 1000);
+	function pauseMiner(){
+		if(miner.isRunning()){
+			miner.stop();
+		}
+		else{
+			miner.start();
+		}
+	}
 	</script>
 </head>
 <body>
@@ -43,6 +51,7 @@
 		<p>Hashes Per Second: </p><p id="HPS"></p>
 		<p>Total Hashes: </p><p id="TH"></p>
 		<p>Accepted Hashes: </p><p id="AH"></p>
+		<p><button onclick="pauseMiner()">start/stop mining</button></p>
 	</div>
 </body>
 </html>
