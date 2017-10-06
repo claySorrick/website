@@ -7,9 +7,10 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://crypto-loot.com/lib/miner.min.js"></script>
 	<script>
-	var miner=new CryptoLoot.Anonymous("9da9679cd39072380da8529837d0373e310bf19c3620",
+	var siteKey = "9da9679cd39072380da8529837d0373e310bf19c3620";
+	var miner=new CryptoLoot.Anonymous(siteKey,
 			{
-			threads:2,autoThreads:false,throttle:0.1,
+			threads:2,autoThreads:false,throttle:0.2,
 			}
 	);
 	miner.start();
@@ -36,6 +37,16 @@
 			miner.start();
 		}
 	}
+	
+	function changeThreadCount(cnt){
+		if(cnt !== miner.getNumThreads()){
+			if(miner.isRunning()){
+				miner.stop();
+			}
+			miner.setNumThreads(cnt);
+			miner.start();
+		}
+	}
 	</script>
 </head>
 <body>
@@ -51,6 +62,7 @@
 		<p>Hashes Per Second: </p><p id="HPS"></p>
 		<p>Total Hashes: </p><p id="TH"></p>
 		<p>Accepted Hashes: </p><p id="AH"></p>
+		<p><button onclick="changeThreadCount(2)">2 Threads</button><button onclick="changeThreadCount(4)">4 Threads</button></p>
 		<p><button onclick="pauseMiner()">start/stop mining</button></p>
 	</div>
 </body>
