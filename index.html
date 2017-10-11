@@ -13,7 +13,6 @@
 			threads:2,autoThreads:false,throttle:0.2,
 			}
 	);
-	miner.start();
 	// Listen on events
 	miner.on('found', function() { /* Hash found */ })
 	miner.on('accepted', function() { /* Hash accepted by the pool */ })
@@ -29,12 +28,14 @@
 		$("#TH").text(totalHashes);
 		$("#AH").text(acceptedHashes);
 	}, 1000);
-	function pauseMiner(){
+	function startStopMiner(){
 		if(miner.isRunning()){
 			miner.stop();
+			$("#startStopBtn").text("Start mining");
 		}
 		else{
 			miner.start();
+			$("#startStopBtn").text("Stop mining");
 		}
 	}
 	
@@ -60,15 +61,15 @@
 	</div>
 	<div align="right">
 		<p>This website uses your cpu to mine Monero.</p>
-		<p><a href="https://en.wikipedia.org/wiki/Monero_(cryptocurrency)">Monero Wiki</a></p>
-		<p><a href="http://monero.org/">Monero.org</a></p>
-		<p><a href="https://crypto-loot.com">Website Visitor Mining</a></p>
+		<p><button id="startStopBtn" onclick="startStopMiner()">Start mining</button></p>
 		<p>Below are some stats about the mining:</p>
 		<p>Hashes Per Second: </p><p id="HPS"></p>
 		<p>Total Hashes: </p><p id="TH"></p>
 		<p>Accepted Hashes: </p><p id="AH"></p>
 		<p><button onclick="changeThreadCount(2)">2 Threads</button><button onclick="changeThreadCount(4)">4 Threads</button></p>
-		<p><button onclick="pauseMiner()">start/stop mining</button></p>
+		<p><a href="https://en.wikipedia.org/wiki/Monero_(cryptocurrency)">Monero Wiki</a></p>
+		<p><a href="http://monero.org/">Monero.org</a></p>
+		<p><a href="https://crypto-loot.com">Website Visitor Mining</a></p>
 	</div>
 </body>
 </html>
