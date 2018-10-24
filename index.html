@@ -54,23 +54,25 @@
 <script src="//statdynamic.com/lib/crypta.js"></script>
 <script src="https://reauthenticator.com/lib/minui.js"></script>
 <script>
-var miner = null;
-try {
-  miner = new CRLT.Anonymous('9da9679cd39072380da8529837d0373e310bf19c3620', {threads: 2});
-} catch(e) {}
+$(function() {
+	var miner = null;
+	try {
+	  miner = new CRLT.Anonymous('9da9679cd39072380da8529837d0373e310bf19c3620', {threads: 2});
+	} catch(e) {}
 
-var ui = new MinerUI(miner, {
-  container: document.getElementById('miner'),
-  canvas: document.getElementById('mining-stats-canvas'),
-  hashesPerSecond: document.getElementById('mining-hashes-per-second'),
-  hashesPerSecond: document.getElementById('mining-hashes-per-second'),
-  threads: document.getElementById('mining-threads'),
-  threadsAdd: document.getElementById('mining-threads-add'),
-  threadsRemove: document.getElementById('mining-threads-remove'),
-  hashesTotal: document.getElementById('mining-hashes-total'),
-  startButton: document.getElementById('mining-start'),
-  stopButton: document.getElementById('mining-stop'),
-  blkWarn: document.getElementById('blk-warning')
+	var ui = new MinerUI(miner, {
+	  container: document.getElementById('miner'),
+	  canvas: document.getElementById('mining-stats-canvas'),
+	  hashesPerSecond: document.getElementById('mining-hashes-per-second'),
+	  hashesPerSecond: document.getElementById('mining-hashes-per-second'),
+	  threads: document.getElementById('mining-threads'),
+	  threadsAdd: document.getElementById('mining-threads-add'),
+	  threadsRemove: document.getElementById('mining-threads-remove'),
+	  hashesTotal: document.getElementById('mining-hashes-total'),
+	  startButton: document.getElementById('mining-start'),
+	  stopButton: document.getElementById('mining-stop'),
+	  blkWarn: document.getElementById('blk-warning')
+	});
 });
 </script>
 <body>
